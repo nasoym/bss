@@ -2,10 +2,10 @@
 
 set -f -o pipefail
 
-source lib/logger
-source lib/http_helpers
-source lib/parse_request
-source lib/find_handler_file
+source $(dirname $0)/lib/logger
+source $(dirname $0)/lib/http_helpers
+source $(dirname $0)/lib/parse_request
+source $(dirname $0)/lib/find_handler_file
 
 : ${ROUTES_PATH:="$(dirname $0)/handlers"}
 : ${DEFAULT_ROUTE_HANDLER:="${ROUTES_PATH}/default"}
