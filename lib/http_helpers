@@ -17,6 +17,14 @@ function echo_response_status_line() {
 }
 export -f echo_response_status_line
 
+function echo_redirect_response() { 
+  echo_response_status_line 302 Found
+  echo_response_default_headers
+  echo -e "Location: dldldldldl\r"
+
+}
+export -f echo_redirect_response
+
 function get_header_value() { 
   header_key="$1"
   sed -e "/^${header_key}/I!d" \
