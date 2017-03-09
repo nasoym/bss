@@ -3,8 +3,11 @@
 function echo_response_default_headers() { 
   # DATE=$(date +"%a, %d %b %Y %H:%M:%S %Z")
   echo -e "Date: $(date -u "+%a, %d %b %Y %T GMT")\r"
-  echo -e "Expires: $(date -u "+%a, %d %b %Y %T GMT")\r"
+  # echo -e "Expires: $(date -u "+%a, %d %b %Y %T GMT")\r"
   echo -e "Connection: close\r"
+  echo -e "Cache-Control: no-cache, no-store, must-revalidate\r"
+  echo -e "Pragma: no-cache\r"
+  echo -e "Expires: 0\r"
 }
 export -f echo_response_default_headers
 
@@ -18,10 +21,10 @@ function echo_response_status_line() {
 export -f echo_response_status_line
 
 function echo_redirect_response() { 
+  local LOCATION="$1"
   echo_response_status_line 302 Found
+  echo -e "Location: ${LOCATION}\r"
   echo_response_default_headers
-  echo -e "Location: dldldldldl\r"
-
 }
 export -f echo_redirect_response
 
