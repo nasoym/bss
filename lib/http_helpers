@@ -38,6 +38,8 @@ function echo_redirect_response() {
   echo_response_status_line 302 Found
   echo -e "Location: ${LOCATION}\r"
   echo_response_default_headers
+  echo -e "Content-Length: 0\r"
+  echo -e "\r"
 }
 export -f echo_redirect_response
 
