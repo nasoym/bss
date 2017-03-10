@@ -11,6 +11,19 @@ function echo_response_default_headers() {
 }
 export -f echo_response_default_headers
 
+function echo_content_response() {
+  local content="$(cat)"
+  local content_type="${1-"text/html"}"
+  echo_response_status_line
+  echo_response_default_headers
+  echo -e "Content-Type: ${content_type}; charset=utf-8\r"
+  echo -e "Content-Length: ${#content}\r"
+  echo -e "\r"
+
+  echo "${content}"
+}
+export -f echo_content_response
+
 function echo_response_status_line() { 
   local STATUS_CODE STATUS_TEXT
   STATUS_CODE=${1-200}
