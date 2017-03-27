@@ -19,16 +19,16 @@ function echo_content_response() {
   echo -e "Content-Type: ${content_type}; charset=utf-8\r"
   echo -e "Content-Length: $((${#content}+1))\r"
   echo -e "\r"
-
   echo "${content}"
+  echo -e "\r"
 }
 export -f echo_content_response
 
 function echo_redirect_response() { 
   local LOCATION="$1"
   echo_response_status_line 302 Found
-  echo -e "Location: ${LOCATION}\r"
   echo_response_default_headers
+  echo -e "Location: ${LOCATION}\r"
   echo -e "Content-Length: 0\r"
   echo -e "\r"
 }
@@ -42,6 +42,7 @@ function echo_response_status_line() {
   echo -e "HTTP/1.0 ${STATUS_CODE} ${STATUS_TEXT}\r"
 }
 export -f echo_response_status_line
+
 
 function get_header_value() { 
   header_key="$1"
