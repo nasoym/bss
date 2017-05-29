@@ -6,12 +6,14 @@ while getopts "p:" options; do case $options in
 esac; done; shift $(( OPTIND - 1 ))
 
 : ${PORT:="8080"}
+: ${SOCAT_TIMEOUT:="0.5"}
 : ${SOCAT_OPTIONS:=""} #-vv
 : ${SERVICE:="$(dirname $0)/service.sh"}
 
 socat_listen_command="TCP-LISTEN:${PORT},reuseaddr,fork"
 
 socat \
+  -t $SOCAT_TIMEOUT \
   $SOCAT_OPTIONS \
   $socat_listen_command \
   EXEC:"${SERVICE}"
