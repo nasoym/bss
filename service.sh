@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -f -o pipefail
+set -f
+set -o pipefail
+set -o errexit
 
 source $(dirname $0)/lib/logger
 source $(dirname $0)/lib/http_helpers
