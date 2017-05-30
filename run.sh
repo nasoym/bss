@@ -13,7 +13,7 @@ esac; done; shift $(( OPTIND - 1 ))
 socat_listen_command="TCP-LISTEN:${PORT},reuseaddr,fork"
 
 socat \
-  -t $SOCAT_TIMEOUT \
+  -T $SOCAT_TIMEOUT \
   $SOCAT_OPTIONS \
   $socat_listen_command \
   EXEC:"${SERVICE}"
