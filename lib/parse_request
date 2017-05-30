@@ -35,6 +35,7 @@ function parse_request() {
       query_key=${I//\=*/}
       [[ "${I}" =~ = ]] && query_value="$(urldecode ${I//*\=/})"
       declare -gx "request_query_${query_key}"="$query_value"
+      declare -gx "${query_key}"="$query_value"
     done
   fi
 }
