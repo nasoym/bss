@@ -6,7 +6,7 @@ while getopts "p:" options; do case $options in
 esac; done; shift $(( OPTIND - 1 ))
 
 : ${PORT:="8080"}
-: ${SOCAT_TIMEOUT:="0.5"}
+: ${SOCAT_TIMEOUT:="60"}
 : ${SOCAT_OPTIONS:=""} #-vv
 : ${SERVICE:="$(dirname $0)/service.sh"}
 
