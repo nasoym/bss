@@ -16,6 +16,7 @@ function echo_content_response() {
   local content_type="${1-"text/html"}"
   echo_response_status_line
   echo_response_default_headers
+  echo -e "Access-Control-Allow-Origin: *\r"
   echo -e "Content-Type: ${content_type}; charset=utf-8\r"
   echo -e "Content-Length: $((${#content}+1))\r"
   echo -e "\r"
